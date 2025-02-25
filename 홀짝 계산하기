@@ -1,0 +1,9 @@
+fun main() {
+    print("숫자를 입력하세요: ")
+    val number = readLine()!!.toInt()
+    if (number % 2 == 0) {
+        println("$number 는(은) 짝수입니다.") //$number = %d
+    } else {
+        println("$number 는(은) 홀수입니다.")
+    }
+}

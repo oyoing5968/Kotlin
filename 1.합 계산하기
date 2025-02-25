@@ -8,3 +8,4 @@ fun main() {
     val sum = num1 + num2
     println("두 수의 합은 $sum 입니다.") //println = 출력하고 줄 바꿈
 }
+//when(operator)으로 사칙연산 추가. == 변수 operator의 값으로 조건문 when 실행

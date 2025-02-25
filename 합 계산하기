@@ -1,0 +1,10 @@
+
+
+fun main() {
+    print("첫 번째 숫자를 입력하세요: ")
+    val num1 = readLine()!!.toInt() //val = 변경 불가능한 상수, var = 변경 가능한 상수
+    print("두 번째 숫자를 입력하세요: ")
+    val num2 = readLine()!!.toInt() //readLine()!!.toInt() = 문자열을 입력 받고, null이 아닐경우 정수로 변환하겠다.
+    val sum = num1 + num2
+    println("두 수의 합은 $sum 입니다.") //println = 출력하고 줄 바꿈
+}

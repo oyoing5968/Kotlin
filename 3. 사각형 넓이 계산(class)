@@ -1,0 +1,13 @@
+class rectangle(var height : Int, var length : Int){
+    fun area() = height * length
+}
+
+fun main() {
+    print("사각형 가로 길이:")
+    var length = readLine()!!.toInt()
+    print("사각형 세로 길이:")
+    var height = readLine()!!.toInt()
+    var rec = rectangle(height, length)
+    println("사각형의 넓이 = ${rec.area()}")
+
+}

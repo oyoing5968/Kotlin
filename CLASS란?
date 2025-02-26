@@ -1,0 +1,87 @@
+클래스는 객체를 위한 설계도.
+
+객체 == 현실 세계의 사물이나 개념을 코드로 정의 한것 ex) 자동차 --> car 객체
+객체는 특징(속성, 변수)과 행동(기능, 함수)를 가진다.
+
+하나의 클래스로 여러개의 객체를 만들수 있다. ex)붕어빵 틀(class) --> 붕어빵(객체)
+
+Kotlin에서 클래스를 선언하는 방법
+  class 클래스이름 {
+      // 속성 (Property, 변수)
+      // 함수 (Method, 기능)
+  }
+
+Example
+  class Car {
+    var brand: String = "SSangYong"
+    var speed: Int = 0
+
+    fun drive() {
+        println("$brand 자동차가 $speed km/h 속도로 달립니다!")
+      }
+  }
+
+Kotlin에서 객체를 생성하고 사용하는 방법
+  fun main() {
+    val myCar = Car() // Car 클래스에서 myCar라는 객체를 생성
+    myCar.speed = 100 // myCar 객체의 speed 속성 값을 변경
+    myCar.drive() // drive() 메서드를 호출하여 동작 실행
+  }
+
+
+생성자(Constructor)는 객체를 생성할 때 필요한 값을 전달하는 특별한 함수.
+Kotlin에서는 기본 생성자(primary constructor)를 클래스 생성과 함께 만들 수 있다.
+
+  class Car(val brand: String, var speed: Int) {
+      fun drive() {
+          println("$brand 자동차가 $speed km/h 속도로 달립니다!")
+      }
+  }
+
+  fun main() {
+      val myCar = Car("Toyota", 120) // 생성자에 값 전달
+      myCar.drive()
+  }
+
+기본 생성자 이외에도 보조 생성자로 객체를 만들수 있다.
+Example
+    class Car {
+    var brand: String
+    var speed: Int
+
+    // 보조 생성자
+    constructor(brand: String, speed: Int) {
+        this.brand = brand
+        this.speed = speed
+    }
+
+
+Kotlin에서 클래스간의 공통 기능을 재사용하기 위해 상속을 사용할 수 있다. 
+단, 이를 위해서는 부모 클래스에 open 키워드가 있어야 한다.
+
+  // 부모 클래스
+  open class Animal(val name: String) {
+      fun eat() {
+          println("$name이(가) 음식을 먹고 있습니다.")
+      }
+  }
+
+  // 자식 클래스 (Animal 상속)
+  class Dog(name: String) : Animal(name) {
+      fun bark() {
+          println("$name이(가) 멍멍 짖습니다!")
+      }
+  }
+
+
+데이터 저장을 위해 간단한 데이터 클래스를 만들 수 도 있다.
+
+  data class User(val name: String, val age: Int)
+
+  fun main() {
+      val user1 = User("Alice", 30)
+      val user2 = User("Alice", 30)
+
+      println(user1) // 자동으로 toString() 제공
+      println(user1 == user2) // 자동으로 equals() 비교 가능
+  }

@@ -1,0 +1,39 @@
+람다식 (Lambda expression)은 함수를 간결하게 표현하는 문법임.
+
+람다식의 기본 구조
+
+  val 함수이름: (매개변수 타입) -> 반환 타입 = { 매개변수 -> 실행 코드 }
+
+Example
+
+// 일반 함수 선언
+fun add(a: Int, b: Int): Int {
+    return a + b
+}
+
+// 람다식으로 변환
+val addLambda: (Int, Int) -> Int = { a, b -> a + b }
+
+fun main() {
+    println(add(3, 5))       // 일반 함수 호출: 8
+    println(addLambda(3, 5)) // 람다식 호출: 8
+}
+
+람다식의 특징
+
+1)타입 생략이 가능하다.
+  val multiply = { a: Int, b: Int -> a * b } //타입을 명시하지 않아도 자동으로 추론 가능하다.
+  println(multiply(2, 3))  // 출력: 6
+
+2) 매개변수가 한개 일때 it 키워드를 사용하여 간결하게 작성할 수 있다.
+  val square = { it: Int -> it * it }
+  println(square(5))  // 출력: 25
+
+3)반환값이 여러줄이면 {}를 사용할 수 있다.
+  val greet: (String) -> String = { name ->
+      val message = "안녕하세요, $name님!"
+      message // 마지막 줄이 반환값
+  }
+  println(greet("철수"))  // 출력: 안녕하세요, 철수님!
+
+람다식과 고차함수부터 이어서 작성

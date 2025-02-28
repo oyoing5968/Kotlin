@@ -25,7 +25,7 @@ fun main() {
   val multiply = { a: Int, b: Int -> a * b } //타입을 명시하지 않아도 자동으로 추론 가능하다.
   println(multiply(2, 3))  // 출력: 6
 
-2) 매개변수가 한개 일때 it 키워드를 사용하여 간결하게 작성할 수 있다.
+2) 매개변수가 한개 일때 it 키워드를 사용하여 간결하게 작성할 수 있다. //it은 람다식에서 단일 매개변수를 참조할 때 자동으로 사용할 수 있는 키워드
   val square = { it: Int -> it * it }
   println(square(5))  // 출력: 25
 
@@ -36,4 +36,45 @@ fun main() {
   }
   println(greet("철수"))  // 출력: 안녕하세요, 철수님!
 
-람다식과 고차함수부터 이어서 작성
+
+람다식은 함수를 다른 함수의 인자로 전달할 때 자주 사용
+
+fun calculate(a: Int, b: Int, operation: (Int, Int) -> Int): Int {   //calculate 함수는 Int 두 개와 람다식(operation)을 인자로 받음.
+    return operation(a, b) 
+}
+
+fun main() {
+    val sum = calculate(10, 5) { x, y -> x + y } 
+    val product = calculate(10, 5) { x, y -> x * y }
+
+    println(sum)      // 출력: 15
+    println(product)  // 출력: 50
+}
+
+람다식에서 return 사용시 주의!! (람다식 내부에서 return 사용시 비지역 반환(non-local return)이 발생)
+
+fun main() {
+    val numbers = listOf(1, 2, 3, 4, 5)
+
+    numbers.forEach {
+        if (it == 3) return // 전체 함수 종료
+        println(it)
+    }
+
+    println("이 문장은 실행되지 않음")
+}
+
+== 출력 안됨 (return을 만나면 main 함수 전체가 종료
+
+return@label을 사용시 특정 람다식에서만 반환.
+
+fun main() {
+    val numbers = listOf(1, 2, 3, 4, 5)
+
+    numbers.forEach label@{
+        if (it == 3) return@label
+        println(it)
+    }
+
+    println("이 문장은 실행됨")
+}
